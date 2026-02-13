@@ -1,0 +1,43 @@
+/* Custom Admin Sidebar Styling */
+
+/* Sidebar Container */
+aside.nav {
+  background-color: #0B1C3E !important;
+}
+
+/* Sidebar Links */
+.nav__link {
+  color: #e2e8f0 !important; /* Light gray/white text */
+  transition: all 0.2s ease-in-out;
+}
+
+.nav__link:hover {
+  color: #009688 !important; /* Teal on hover */
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav__link--active {
+  color: #EAB308 !important; /* Yellow for active */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #EAB308;
+}
+
+/* Sidebar Header / Logo Area */
+.nav > header {
+  background-color: #0B1C3E !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar customization for sidebar */
+aside.nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+aside.nav::-webkit-scrollbar-track {
+  background: #0B1C3E;
+}
+
+aside.nav::-webkit-scrollbar-thumb {
+  background-color: #1e3a8a;
+  border-radius: 20px;
+}
