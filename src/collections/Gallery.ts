@@ -30,6 +30,8 @@ export const Gallery: CollectionConfig = {
         { label: 'Nyornuvi', value: 'Nyornuvi' },
         { label: 'Events', value: 'Events' },
         { label: 'Team', value: 'Team' },
+        { label: 'UVL', value: 'UVL' },
+        { label: 'Masterclass', value: 'Masterclass' },
       ],
     },
     {

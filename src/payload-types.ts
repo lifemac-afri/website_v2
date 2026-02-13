@@ -199,7 +199,7 @@ export interface Event {
   location: string;
   time?: string | null;
   featured?: boolean | null;
-  category?: ('General' | 'STEMIZE' | 'PSP' | 'YLT') | null;
+  category?: ('General' | 'STEMIZE' | 'PSP' | 'YLT' | 'UVL' | 'Masterclass') | null;
   status?: ('upcoming' | 'past' | 'draft' | 'cancelled') | null;
   image?: (number | null) | Media;
   description?: {
@@ -328,7 +328,7 @@ export interface ImpactMetric {
 export interface Gallery {
   id: number;
   title: string;
-  category: 'PSP' | 'STEMize' | 'YLT' | 'Nyornuvi' | 'Events' | 'Team';
+  category: 'PSP' | 'STEMize' | 'YLT' | 'Nyornuvi' | 'Events' | 'Team' | 'UVL' | 'Masterclass';
   images?: (number | Media)[] | null;
   /**
    * Upload a ZIP file containing images. They will be automatically extracted and added to this album.

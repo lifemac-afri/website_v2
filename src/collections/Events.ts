@@ -47,6 +47,8 @@ export const Events: CollectionConfig = {
         { label: 'STEMIZE', value: 'STEMIZE' },
         { label: 'PSP', value: 'PSP' },
         { label: 'YLT', value: 'YLT' },
+        { label: 'UVL', value: 'UVL' },
+        { label: 'Masterclass', value: 'Masterclass' },
       ],
       defaultValue: 'General',
     },
