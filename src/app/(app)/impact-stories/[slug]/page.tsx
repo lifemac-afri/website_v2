@@ -62,7 +62,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default async function ImpactStoryPage({ params }: { params: Promise<{ slug: string }> }) {
+export const dynamic = 'force-dynamic'
+
+const ImpactStoryPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
   const payload = await getPayload({ config })
 
@@ -153,15 +155,15 @@ export default async function ImpactStoryPage({ params }: { params: Promise<{ sl
 
         {/* Featured Image */}
         <div className="bg-white px-4 md:px-8 pb-8">
-           <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-sm">
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-sm">
             {story.image && typeof story.image === 'object' && 'url' in story.image && story.image.url ? (
-               <Image 
-                  src={story.image.url} 
-                  alt={story.title} 
-                  fill 
-                  className="object-cover" 
-                  priority 
-               />
+              <Image
+                src={story.image.url}
+                alt={story.title}
+                fill
+                className="object-cover"
+                priority
+              />
             ) : (
               <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
                 <span className="text-lg">No Image Available</span>
@@ -172,20 +174,20 @@ export default async function ImpactStoryPage({ params }: { params: Promise<{ sl
 
         {/* Content */}
         <div className="bg-white lg:rounded-b-[2rem] px-4 py-16 md:px-8 md:py-24 shadow-sm">
-           <div className="prose prose-lg max-w-none prose-headings:text-[#0B1C3E] prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-4 prose-p:text-slate-600 prose-p:leading-loose prose-p:mb-6 prose-a:text-teal-600 hover:prose-a:text-teal-700 prose-blockquote:border-l-4 prose-blockquote:border-[#EAB308] prose-blockquote:bg-yellow-50/50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:my-8 prose-img:rounded-2xl prose-img:my-8 prose-strong:text-[#0B1C3E] prose-li:text-slate-600 prose-li:mb-2">
-              {/* @ts-ignore */}
-              <RichText content={story.description} />
-           </div>
+          <div className="prose prose-lg max-w-none prose-headings:text-[#0B1C3E] prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-4 prose-p:text-slate-600 prose-p:leading-loose prose-p:mb-6 prose-a:text-teal-600 hover:prose-a:text-teal-700 prose-blockquote:border-l-4 prose-blockquote:border-[#EAB308] prose-blockquote:bg-yellow-50/50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:my-8 prose-img:rounded-2xl prose-img:my-8 prose-strong:text-[#0B1C3E] prose-li:text-slate-600 prose-li:mb-2">
+            {/* @ts-ignore */}
+            <RichText content={story.description} />
+          </div>
         </div>
 
         {/* Call to Action - Integrated */}
         <div className='px-4 md:px-8 w-full bg-white'>
 
-        <div className="mt-12 bg-[#0B1C3E] rounded-[1rem] p-8 md:p-12 text-center text-white relative overflow-hidden shadow-lg mb-20">
-           <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="mt-12 bg-[#0B1C3E] rounded-[1rem] p-8 md:p-12 text-center text-white relative overflow-hidden shadow-lg mb-20">
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
               <Image src="/images/africa.svg" alt="Pattern" fill className="object-cover invert" />
-           </div>
-           <div className="relative z-10">
+            </div>
+            <div className="relative z-10">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">Inspired by this story?</h3>
               <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
                 Join us in creating more success stories like this one. Your support makes a real difference.
@@ -198,8 +200,8 @@ export default async function ImpactStoryPage({ params }: { params: Promise<{ sl
                   <Link href="/get-involved/volunteer">Get Involved</Link>
                 </Button>
               </div>
-           </div>
-        </div>
+            </div>
+          </div>
         </div>
 
         {/* Related Stories */}
@@ -245,3 +247,5 @@ export default async function ImpactStoryPage({ params }: { params: Promise<{ sl
     </main>
   )
 }
+
+export default ImpactStoryPage

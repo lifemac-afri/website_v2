@@ -164,6 +164,8 @@ const events = {
   // Additional events would be defined here
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const event = events[slug as keyof typeof events]
@@ -193,50 +195,50 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-950 text-white md:px-12 px-4 overflow-hidden rounded-bl-[60px] md:rounded-bl-[80px]">
         {/* Background Map */}
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <Image
+          <Image
             src="/images/world-map.png"
             alt="World Map"
             fill
             className="object-cover object-center"
-            />
+          />
         </div>
 
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-20">
           <div className="p-0 mb-8">
             <Link
-                href="/events"
-                className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-6"
+              href="/events"
+              className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-6"
             >
-                <ChevronLeft className="mr-1 h-4 w-4" />
-                Back to Events
+              <ChevronLeft className="mr-1 h-4 w-4" />
+              Back to Events
             </Link>
             <div className="flex items-center gap-4 mb-4">
-                <Badge className="bg-[#EAB308] text-blue-950 hover:bg-[#CA8A04] px-4 py-1 text-sm font-bold rounded-full">
-                    {event.category}
-                </Badge>
+              <Badge className="bg-[#EAB308] text-blue-950 hover:bg-[#CA8A04] px-4 py-1 text-sm font-bold rounded-full">
+                {event.category}
+              </Badge>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">{event.title}</h1>
 
             <div className="flex flex-wrap gap-6 text-lg text-blue-100">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-[#EAB308]" />
                 <span>{event.date}</span>
-                </div>
+              </div>
 
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-[#EAB308]" />
                 <span>{event.time}</span>
-                </div>
+              </div>
 
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-[#EAB308]" />
                 <span>{event.location}</span>
-                </div>
+              </div>
 
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-[#EAB308]" />
                 <span>{event.spotsLeft} spots left</span>
-                </div>
+              </div>
             </div>
           </div>
 
@@ -258,9 +260,9 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
       {/* Event Content */}
       <section className="py-16 md:px-12 px-4 relative overflow-hidden">
-         {/* Decorative Blobs */}
-         <div className="absolute top-20 right-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl -z-10 opacity-50"></div>
-         <div className="absolute bottom-20 left-0 w-72 h-72 bg-yellow-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+        {/* Decorative Blobs */}
+        <div className="absolute top-20 right-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+        <div className="absolute bottom-20 left-0 w-72 h-72 bg-yellow-50 rounded-full blur-3xl -z-10 opacity-50"></div>
 
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
@@ -276,8 +278,8 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 <div className="flex flex-wrap gap-4">
                   {event.sponsors.map((sponsor, index) => (
                     <div key={index} className="bg-white border border-gray-100 shadow-sm rounded-xl px-6 py-3 text-gray-600  flex items-center gap-2">
-                       <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-                       {sponsor}
+                      <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+                      {sponsor}
                     </div>
                   ))}
                 </div>
@@ -287,7 +289,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             {/* Sidebar */}
             <div className="w-full lg:w-1/3 space-y-8">
               <Card className="border-none shadow-xl bg-white rounded-2xl overflow-hidden relative">
-                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 to-blue-600"></div>
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 to-blue-600"></div>
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-blue-950 mb-6">Event Details</h3>
 
@@ -358,18 +360,18 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
                   <div className="mt-8">
                     <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold h-12 rounded-tl-2xl rounded-br-2xl rounded-tr-none rounded-bl-none shadow-md">
-                        Register Now
+                      Register Now
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-              
+
               {/* Organizer Card */}
-               <Card className="border-none shadow-lg bg-blue-50/50 rounded-2xl p-6">
-                  <h4 className="font-bold text-blue-950 mb-2">Organized by</h4>
-                  <p className="text-lg  text-teal-700">{event.organizer}</p>
-                  <Button variant="link" className="text-blue-600 p-0 h-auto mt-2">Contact Organizer &rarr;</Button>
-               </Card>
+              <Card className="border-none shadow-lg bg-blue-50/50 rounded-2xl p-6">
+                <h4 className="font-bold text-blue-950 mb-2">Organized by</h4>
+                <p className="text-lg  text-teal-700">{event.organizer}</p>
+                <Button variant="link" className="text-blue-600 p-0 h-auto mt-2">Contact Organizer &rarr;</Button>
+              </Card>
             </div>
           </div>
         </div>
@@ -377,16 +379,16 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
       {/* Registration CTA */}
       <section className="py-20 bg-[#0B1C3E] text-white md:px-12 px-4 relative overflow-hidden">
-         {/* Background Map */}
+        {/* Background Map */}
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-            <Image
+          <Image
             src="/images/world-map.png"
             alt="World Map"
             fill
             className="object-cover object-center"
-            />
+          />
         </div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to join us at {event.title}?</h2>
           <p className="text-xl text-blue-200 mb-10 max-w-2xl mx-auto">

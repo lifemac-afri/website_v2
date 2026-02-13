@@ -11,6 +11,8 @@ import StoriesList from '@/components/StoriesList';
 import { format } from 'date-fns';
 import ShareStorySection from '@/components/ShareStorySection';
 
+export const dynamic = 'force-dynamic'
+
 export default async function ImpactStoriesPage() {
   const payload = await getPayload({ config })
   const categories = ['PSP', 'STEMize', 'Nyornuvi', 'YLT']
@@ -40,7 +42,7 @@ export default async function ImpactStoriesPage() {
       sort: 'order',
     }),
     // Fetch Gallery Images for Backgrounds
-    ...categories.map(category => 
+    ...categories.map(category =>
       payload.find({
         collection: 'gallery',
         where: {
@@ -58,14 +60,14 @@ export default async function ImpactStoriesPage() {
   const impactMetrics = impactMetricsData.docs
 
   const galleryImages: Record<string, string> = {}
-  
+
   categories.forEach((category, index) => {
     const galleryData = galleryResults[index] as any
     if (galleryData.docs.length > 0 && galleryData.docs[0]?.images && galleryData.docs[0].images.length > 0) {
-       const firstImage = galleryData.docs[0].images[0]
-       if (typeof firstImage === 'object' && firstImage?.url) {
-          galleryImages[category] = firstImage.url
-       }
+      const firstImage = galleryData.docs[0].images[0]
+      if (typeof firstImage === 'object' && firstImage?.url) {
+        galleryImages[category] = firstImage.url
+      }
     }
   })
 
@@ -95,9 +97,9 @@ export default async function ImpactStoriesPage() {
             <div className="relative z-10 px-8 md:px-20 py-12 max-w-3xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Impact Stories</h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-Real stories of transformation and empowerment. 
+                Real stories of transformation and empowerment.
               </p>
-              
+
             </div>
           </div>
 
@@ -105,7 +107,7 @@ Real stories of transformation and empowerment.
           <div className="relative z-20 -mt-16 mx-auto max-w-4xl px-4">
             <div className="bg-[#EAB308] rounded-2xl shadow-xl p-8 md:p-10 text-center">
               <p className="text-blue-950 text-lg md:text-xl leading-relaxed">
-               Discover how our diverse initiatives are making a tangible difference in the lives of individuals and communities.
+                Discover how our diverse initiatives are making a tangible difference in the lives of individuals and communities.
               </p>
             </div>
           </div>
@@ -120,10 +122,10 @@ Real stories of transformation and empowerment.
               // Map index to a category for background image rotation
               const categoryKey = categories[index % categories.length] || 'PSP';
               const bgImage = galleryImages[categoryKey] || "/placeholder.svg";
-              
+
               return (
                 <Card key={stat.id} className="relative overflow-hidden border-none shadow-lg group h-48 flex flex-col items-center justify-center text-center rounded-none shadow-none ">
-                
+
                   <div className="absolute inset-0 transition-colors"></div>
                   <div className="relative z-10 p-4">
                     <CardTitle className="text-4xl md:text-5xl font-bold text-blue-950 mb-2">{stat.value}</CardTitle>
@@ -139,9 +141,9 @@ Real stories of transformation and empowerment.
       {/* Featured Stories */}
       {featuredStories.length > 0 && (
         <section id="featured-stories" className="py-16 md:py-24 bg-gray-50 px-4 md:px-8 relative overflow-hidden">
-           {/* Decorative Blobs */}
-           <div className="absolute top-20 left-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl -z-10 opacity-50"></div>
-           <div className="absolute bottom-20 right-0 w-72 h-72 bg-yellow-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+          {/* Decorative Blobs */}
+          <div className="absolute top-20 left-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl -z-10 opacity-50"></div>
+          <div className="absolute bottom-20 right-0 w-72 h-72 bg-yellow-50 rounded-full blur-3xl -z-10 opacity-50"></div>
 
           <div className="container mx-auto relative z-10">
             <div className="flex flex-col items-center text-center mb-16">
@@ -154,53 +156,54 @@ Real stories of transformation and empowerment.
 
             <div className="grid lg:grid-cols-3 gap-8">
               {featuredStories.map((story) => {
-                 const imageUrl = typeof story.image === 'object' && story.image?.url ? story.image.url : '/placeholder.svg';
-                 const descriptionText = (story.description as any)?.root?.children?.[0]?.children?.[0]?.text || "No description available.";
+                const imageUrl = typeof story.image === 'object' && story.image?.url ? story.image.url : '/placeholder.svg';
+                const descriptionText = (story.description as any)?.root?.children?.[0]?.children?.[0]?.text || "No description available.";
 
-                 return (
-                <Card key={story.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 pt-0 border-none shadow-lg rounded-2xl group flex flex-col h-full">
-                  <div className="relative h-64 overflow-hidden">
-                    <Image 
-                      src={imageUrl} 
-                      alt={story.title} 
-                      fill 
-                      className="object-cover group-hover:scale-110 transition-transform duration-500" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-[#EAB308] text-blue-950 font-bold shadow-sm">Featured</Badge>
+                return (
+                  <Card key={story.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 pt-0 border-none shadow-lg rounded-2xl group flex flex-col h-full">
+                    <div className="relative h-64 overflow-hidden">
+                      <Image
+                        src={imageUrl}
+                        alt={story.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-[#EAB308] text-blue-950 font-bold shadow-sm">Featured</Badge>
+                      </div>
+                      <Link href={`/what-we-do/${getSlug(story.category || 'General')}`}>
+                        <Badge
+                          className="absolute top-4 right-4 bg-white/90 text-blue-900 hover:bg-white backdrop-blur-sm"
+                        >
+                          {story.category || 'General'}
+                        </Badge>
+                      </Link>
                     </div>
-                    <Link href={`/what-we-do/${getSlug(story.category || 'General')}`}>
-                      <Badge
-                        className="absolute top-4 right-4 bg-white/90 text-blue-900 hover:bg-white backdrop-blur-sm"
-                      >
-                        {story.category || 'General'}
-                      </Badge>
-                    </Link>
-                  </div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-bold text-blue-950 line-clamp-2 group-hover:text-teal-700 transition-colors">{story.title}</CardTitle>
-                    <div className="flex items-center gap-4 text-sm mt-2 text-gray-500">
-                      <span className="flex items-center">
-                        <MapPin className="h-3.5 w-3.5 mr-1 text-teal-600" />
-                        {story.location || 'Ghana'}
-                      </span>
-                      <span className="flex items-center">
-                        <Calendar className="h-3.5 w-3.5 mr-1 text-teal-600" />
-                        {story.date ? format(new Date(story.date), 'MMM d, yyyy') : 'N/A'}
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="grow">
-                    <p className="text-gray-600 line-clamp-3 leading-relaxed">{descriptionText}</p>
-                  </CardContent>
-                  <CardFooter className="pt-0 pb-6">
-                    <Button variant="link" className="p-0 text-teal-700 hover:text-teal-800 flex items-center gap-1 group/btn">
-                      Read full story <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Button>
-                  </CardFooter>
-                </Card>
-              )})}
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-xl font-bold text-blue-950 line-clamp-2 group-hover:text-teal-700 transition-colors">{story.title}</CardTitle>
+                      <div className="flex items-center gap-4 text-sm mt-2 text-gray-500">
+                        <span className="flex items-center">
+                          <MapPin className="h-3.5 w-3.5 mr-1 text-teal-600" />
+                          {story.location || 'Ghana'}
+                        </span>
+                        <span className="flex items-center">
+                          <Calendar className="h-3.5 w-3.5 mr-1 text-teal-600" />
+                          {story.date ? format(new Date(story.date), 'MMM d, yyyy') : 'N/A'}
+                        </span>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="grow">
+                      <p className="text-gray-600 line-clamp-3 leading-relaxed">{descriptionText}</p>
+                    </CardContent>
+                    <CardFooter className="pt-0 pb-6">
+                      <Button variant="link" className="p-0 text-teal-700 hover:text-teal-800 flex items-center gap-1 group/btn">
+                        Read full story <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -214,14 +217,14 @@ Real stories of transformation and empowerment.
 
       {/* Call to Action */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-[#FDF8F3] to-white text-blue-950 px-4 md:px-8 relative pb-20">
-         {/* Background Map */}
+        {/* Background Map */}
         <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-            <Image
+          <Image
             src="/images/world-map.png"
             alt="World Map"
             fill
             className="object-cover object-top"
-            />
+          />
         </div>
 
         <div className="container mx-auto text-center relative z-10 pb-20">

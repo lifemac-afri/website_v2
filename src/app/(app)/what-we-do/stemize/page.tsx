@@ -10,6 +10,8 @@ import React from 'react';
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
+export const dynamic = 'force-dynamic'
+
 const STEMize = async () => {
   const payload = await getPayload({ config })
 
